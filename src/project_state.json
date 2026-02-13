@@ -1,13 +1,14 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 3,
+  "projectStateVersion": 7,
   "summary": "Premium single-product ecommerce website for \"Pro 2 ANC Wireless Earbuds\" targeting young Indian customers, featuring a dark luxury Apple-like design, 3D floating product presentation, UPI payments, and a simple high-conversion checkout flow.",
   "architectural_notes": [
     "Single-product ecommerce flow focused on high conversions for Indian market (UPI, INR pricing, shipping/replacement trust signals)."
   ],
-  "known_issues": [],
-  "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- 3D floating wireless earbuds hero render on black background with soft rim glow and subtle reflections (product-hero.dim_1600x1200.png)\n- Wide dark luxury abstract background texture with subtle gradients/noise (bg-luxury.dim_1920x1080.png)",
+  "known_issues": [
+    "Hero/landing product photo needs to be updated to the user-provided image (current image is not the one the user added)."
+  ],
+  "isFixRequest": true,
   "existing_features": [
     {
       "id": "feature-build-a-single-product-landing-page-for-pro-2-anc-wireless-earbuds-with-these-sections-in-order-1-hero-with-large-3d-floating-style-product-visual-headline-price-1499-limited-offer-and-primary-buy-now-cta-2-features-section-highlighting-active-noise-cancellation-deep-bass-sound-30-hours-battery-backup-touch-control-compatible-with-iphone-and-android-3-offer-section-emphasizing-the-limited-offer-price-1499-4-trust-section-with-7-days-replacement-and-free-shipping-india-trust-badges",
@@ -72,6 +73,30 @@
         "REQ-8"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-make-the-hero-product-image-easy-to-change-by-moving-the-image-path-into-a-single-centralized-frontend-config-export-e-g-a-constant-alongside-other-product-constants-and-update-the-hero-section-to-read-the-image-source-from-that-config-instead-of-hardcoding-the-filename",
+      "title": "Make the hero product image easy to change by moving the image path into a single, centralized frontend config/export (e.g., a constant alongside other product constants) and update the hero section to read the image source from that config instead of hardcoding the filename.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-support-for-a-replacement-hero-product-image-asset-by-including-a-new-image-file-in-the-static-assets-directory-and-updating-the-centralized-product-image-config-to-use-the-new-filename",
+      "title": "Add support for a replacement hero product image asset by including a new image file in the static assets directory and updating the centralized product image config to use the new filename.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-landing-page-hero-product-photo-to-use-the-same-user-provided-image-that-was-previously-added-i-e-revert-the-current-hero-image-change-specifically-change-the-centralized-hero-image-path-constant-hero-image-src-in-frontend-src-lib-pricing-ts-from-the-current-file-to-the-user-provided-image-file-located-in-the-static-assets-directory-frontend-public-assets-generated-and-ensure-the-hero-section-renders-that-image-without-any-broken-links",
+      "title": "Update the landing page hero product photo to use the same user-provided image that was previously added (i.e., revert the current hero image change). Specifically, change the centralized hero image path constant (HERO_IMAGE_SRC in frontend/src/lib/pricing.ts) from the current file to the user-provided image file located in the static assets directory (frontend/public/assets/generated), and ensure the Hero section renders that image without any broken links.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -120,6 +145,12 @@
     {
       "id": "AR-8",
       "summary": "Smooth scroll and micro-animations across the site (premium feel, high conversion focused).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Allow updating/replacing the product (earbuds/airpod) image used on the site (e.g., hero/product visual asset swap).",
       "reqIds": [],
       "status": "pending"
     }

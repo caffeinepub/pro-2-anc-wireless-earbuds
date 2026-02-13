@@ -1,278 +1,34 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-13T08:29:51.084Z",
+  "generatedAt": "2026-02-13T08:42:58.752Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 8,
-    "implemented": 8,
+    "total": 1,
+    "implemented": 1,
     "items": [
       {
-        "id": "REQ-1",
-        "summary": "Build a single-product landing page for “Pro 2 ANC Wireless Earbuds” with these sections in order: (1) Hero with large 3D-floating-style product visual, headline, price “₹1499 (Limited Offer)”, and primary “Buy Now” CTA; (2) Features section highlighting: Active Noise Cancellation, Deep Bass Sound, 30 Hours Battery Backup, Touch Control, Compatible with iPhone and Android; (3) Offer section emphasizing the limited offer price ₹1499; (4) Trust section with “7 Days Replacement” and “Free Shipping India” trust badges.",
+        "id": "REQ-11",
+        "summary": "Update the landing page hero product photo to use the same user-provided image that was previously added (i.e., revert the current hero image change). Specifically, change the centralized hero image path constant (HERO_IMAGE_SRC in frontend/src/lib/pricing.ts) from the current file to the user-provided image file located in the static assets directory (frontend/public/assets/generated), and ensure the Hero section renders that image without any broken links.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/App.tsx",
-          "frontend/src/pages/LandingPage.tsx",
-          "frontend/src/components/sections/HeroSection.tsx",
-          "frontend/src/components/sections/FeaturesSection.tsx",
-          "frontend/src/components/sections/OfferSection.tsx",
-          "frontend/src/components/sections/TrustSection.tsx",
-          "frontend/public/assets/generated/product-hero.dim_1600x1200.png",
-          "frontend/public/assets/generated/bg-luxury.dim_1920x1080.png"
+          "frontend/src/lib/pricing.ts"
         ],
         "matchedFiles": [
-          "frontend/src/App.tsx",
-          "frontend/src/pages/LandingPage.tsx",
-          "frontend/src/components/sections/HeroSection.tsx",
-          "frontend/src/components/sections/FeaturesSection.tsx",
-          "frontend/src/components/sections/OfferSection.tsx",
-          "frontend/src/components/sections/TrustSection.tsx",
-          "frontend/public/assets/generated/product-hero.dim_1600x1200.png",
-          "frontend/public/assets/generated/bg-luxury.dim_1920x1080.png"
-        ]
-      },
-      {
-        "id": "REQ-2",
-        "summary": "Implement a premium dark-luxury visual theme (black/near-black base) with an Apple-like clean layout, modern minimal typography, and a soft glow lighting effect around the product visual; apply the theme consistently across landing + checkout without using blue/purple as primary brand colors.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/components/layout/SiteLayout.tsx",
-          "frontend/src/components/sections/HeroSection.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/components/layout/SiteLayout.tsx",
-          "frontend/src/components/sections/HeroSection.tsx"
-        ]
-      },
-      {
-        "id": "REQ-3",
-        "summary": "Add smooth scroll behavior and premium micro-animations (e.g., section reveal on scroll, CTA hover/press, subtle parallax/tilt on product) optimized for performance and conversion-focused clarity.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/hooks/useRevealOnScroll.ts",
-          "frontend/src/hooks/useTilt.ts",
-          "frontend/src/components/sections/HeroSection.tsx",
-          "frontend/src/components/sections/FeaturesSection.tsx",
-          "frontend/src/components/sections/OfferSection.tsx",
-          "frontend/src/components/sections/TrustSection.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/hooks/useRevealOnScroll.ts",
-          "frontend/src/hooks/useTilt.ts",
-          "frontend/src/components/sections/HeroSection.tsx",
-          "frontend/src/components/sections/FeaturesSection.tsx",
-          "frontend/src/components/sections/OfferSection.tsx",
-          "frontend/src/components/sections/TrustSection.tsx"
-        ]
-      },
-      {
-        "id": "REQ-4",
-        "summary": "Create a simple, high-conversion checkout page that includes: customer details (name, phone, email optional), shipping address fields (address line(s), city, state, pincode), quantity selector, order summary showing the product name and total price, and a clear “Pay with UPI” step.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/CheckoutPage.tsx",
-          "frontend/src/lib/pricing.ts",
-          "frontend/src/App.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/CheckoutPage.tsx",
-          "frontend/src/lib/pricing.ts",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-5",
-        "summary": "Implement UPI payment initiation on the checkout page using a UPI intent deep link and a scannable QR code generated on the client. Provide a single, clearly-located configuration for UPI payee details (VPA/UPI ID, payee name, optional transaction note prefix) without hardcoding unknown merchant credentials.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/config/upi.ts",
-          "frontend/src/lib/upi.ts",
-          "frontend/src/components/upi/UPIPaymentPanel.tsx",
-          "frontend/src/pages/CheckoutPage.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/config/upi.ts",
-          "frontend/src/lib/upi.ts",
-          "frontend/src/components/upi/UPIPaymentPanel.tsx",
-          "frontend/src/pages/CheckoutPage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-6",
-        "summary": "Add an order flow backed by the Motoko canister: create an order when the user proceeds to payment, store order details (customer info, address, quantity, amount, timestamps) and set initial status to “pending_payment”; allow the frontend to fetch the created order by id to show a confirmation screen with next steps (e.g., “Complete UPI payment, then enter UTR/reference”).",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/lib/backendClient.ts",
-          "frontend/src/lib/orders.ts",
-          "frontend/src/pages/CheckoutPage.tsx",
-          "frontend/src/pages/OrderConfirmationPage.tsx",
-          "frontend/src/App.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/CheckoutPage.tsx",
-          "frontend/src/pages/OrderConfirmationPage.tsx",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-7",
-        "summary": "Allow the user to submit a UPI payment reference/UTR after paying; store it on the order and mark status as “payment_submitted” (without claiming automatic payment verification). Show a clear success state explaining that the order will be confirmed after verification.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/orders/UPIReferenceForm.tsx",
-          "frontend/src/pages/OrderConfirmationPage.tsx",
-          "frontend/src/pages/PaymentSubmittedPage.tsx",
-          "frontend/src/App.tsx",
-          "frontend/src/lib/orders.ts"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/orders/UPIReferenceForm.tsx",
-          "frontend/src/pages/OrderConfirmationPage.tsx",
-          "frontend/src/pages/PaymentSubmittedPage.tsx",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-8",
-        "summary": "Add a lightweight navigation structure for a single-product site: top nav with product name and a “Buy Now” button, and footer with basic India-focused trust/support text; keep all user-facing text in English.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/layout/TopNav.tsx",
-          "frontend/src/components/layout/Footer.tsx",
-          "frontend/src/components/layout/SiteLayout.tsx",
-          "frontend/src/App.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/layout/TopNav.tsx",
-          "frontend/src/components/layout/Footer.tsx",
-          "frontend/src/components/layout/SiteLayout.tsx",
-          "frontend/src/App.tsx"
+          "frontend/src/lib/pricing.ts"
         ]
       }
     ]
   },
   "changedFiles": [
-    "backend/main.mo",
     "build-request.json",
-    "build-template/Dockerfile",
-    "build-template/LICENSE",
-    "build-template/README.md",
-    "build-template/deploy.sh",
-    "build-template/icp.yaml",
-    "build-template/package.json",
-    "build-template/pnpm-lock.yaml",
-    "build-template/pnpm-workspace.yaml",
-    "build-template/scripts/prune-unused-images.js",
-    "build-template/scripts/resize-images.js",
-    "build-template/src/backend/canister.yaml",
-    "build-template/src/backend/system-idl/aaaaa-aa.did",
-    "build-template/src/frontend/canister.yaml",
-    "build-template/src/frontend/components.json",
-    "build-template/src/frontend/env.json",
-    "build-template/src/frontend/eslint-rules/no-bigint-in-query-keys.js",
-    "build-template/src/frontend/eslint-rules/require-internet-identity-provider.js",
-    "build-template/src/frontend/eslint.config.js",
-    "build-template/src/frontend/package.json",
-    "build-template/src/frontend/postcss.config.js",
-    "build-template/src/frontend/src/components/ui/accordion.tsx",
-    "build-template/src/frontend/src/components/ui/alert-dialog.tsx",
-    "build-template/src/frontend/src/components/ui/alert.tsx",
-    "build-template/src/frontend/src/components/ui/aspect-ratio.tsx",
-    "build-template/src/frontend/src/components/ui/avatar.tsx",
-    "build-template/src/frontend/src/components/ui/badge.tsx",
-    "build-template/src/frontend/src/components/ui/breadcrumb.tsx",
-    "build-template/src/frontend/src/components/ui/button.tsx",
-    "build-template/src/frontend/src/components/ui/calendar.tsx",
-    "build-template/src/frontend/src/components/ui/card.tsx",
-    "build-template/src/frontend/src/components/ui/carousel.tsx",
-    "build-template/src/frontend/src/components/ui/chart.tsx",
-    "build-template/src/frontend/src/components/ui/checkbox.tsx",
-    "build-template/src/frontend/src/components/ui/collapsible.tsx",
-    "build-template/src/frontend/src/components/ui/command.tsx",
-    "build-template/src/frontend/src/components/ui/context-menu.tsx",
-    "build-template/src/frontend/src/components/ui/dialog.tsx",
-    "build-template/src/frontend/src/components/ui/drawer.tsx",
-    "build-template/src/frontend/src/components/ui/dropdown-menu.tsx",
-    "build-template/src/frontend/src/components/ui/form.tsx",
-    "build-template/src/frontend/src/components/ui/hover-card.tsx",
-    "build-template/src/frontend/src/components/ui/input-otp.tsx",
-    "build-template/src/frontend/src/components/ui/input.tsx",
-    "build-template/src/frontend/src/components/ui/label.tsx",
-    "build-template/src/frontend/src/components/ui/menubar.tsx",
-    "build-template/src/frontend/src/components/ui/navigation-menu.tsx",
-    "build-template/src/frontend/src/components/ui/pagination.tsx",
-    "build-template/src/frontend/src/components/ui/popover.tsx",
-    "build-template/src/frontend/src/components/ui/progress.tsx",
-    "build-template/src/frontend/src/components/ui/radio-group.tsx",
-    "build-template/src/frontend/src/components/ui/resizable.tsx",
-    "build-template/src/frontend/src/components/ui/scroll-area.tsx",
-    "build-template/src/frontend/src/components/ui/select.tsx",
-    "build-template/src/frontend/src/components/ui/separator.tsx",
-    "build-template/src/frontend/src/components/ui/sheet.tsx",
-    "build-template/src/frontend/src/components/ui/sidebar.tsx",
-    "build-template/src/frontend/src/components/ui/skeleton.tsx",
-    "build-template/src/frontend/src/components/ui/slider.tsx",
-    "build-template/src/frontend/src/components/ui/sonner.tsx",
-    "build-template/src/frontend/src/components/ui/switch.tsx",
-    "build-template/src/frontend/src/components/ui/table.tsx",
-    "build-template/src/frontend/src/components/ui/tabs.tsx",
-    "build-template/src/frontend/src/components/ui/textarea.tsx",
-    "build-template/src/frontend/src/components/ui/toggle-group.tsx",
-    "build-template/src/frontend/src/components/ui/toggle.tsx",
-    "build-template/src/frontend/src/components/ui/tooltip.tsx",
-    "build-template/src/frontend/src/hooks/use-mobile.tsx",
-    "build-template/src/frontend/src/lib/utils.ts",
-    "build-template/src/frontend/tsconfig.json",
-    "build-template/src/frontend/vite.config.js",
-    "build-template/tsconfig.json",
-    "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/index.css",
-    "frontend/index.html",
-    "frontend/public/assets/generated/bg-luxury.dim_1920x1080.png",
-    "frontend/public/assets/generated/product-hero.dim_1600x1200.png",
-    "frontend/src/App.tsx",
-    "frontend/src/backend.d.ts",
-    "frontend/src/backend.ts",
-    "frontend/src/components/layout/Footer.tsx",
-    "frontend/src/components/layout/SiteLayout.tsx",
-    "frontend/src/components/layout/TopNav.tsx",
-    "frontend/src/components/orders/UPIReferenceForm.tsx",
-    "frontend/src/components/sections/FeaturesSection.tsx",
-    "frontend/src/components/sections/HeroSection.tsx",
-    "frontend/src/components/sections/OfferSection.tsx",
-    "frontend/src/components/sections/TrustSection.tsx",
-    "frontend/src/components/upi/UPIPaymentPanel.tsx",
-    "frontend/src/config.ts",
-    "frontend/src/config/upi.ts",
-    "frontend/src/declarations/backend.did.d.ts",
-    "frontend/src/declarations/backend.did.js",
-    "frontend/src/hooks/useActor.ts",
-    "frontend/src/hooks/useInternetIdentity.ts",
-    "frontend/src/hooks/useQueries.ts",
-    "frontend/src/hooks/useRevealOnScroll.ts",
-    "frontend/src/hooks/useTilt.ts",
-    "frontend/src/index.css",
     "frontend/src/lib/pricing.ts",
-    "frontend/src/lib/upi.ts",
-    "frontend/src/main.tsx",
-    "frontend/src/pages/CheckoutPage.tsx",
-    "frontend/src/pages/LandingPage.tsx",
-    "frontend/src/pages/OrderConfirmationPage.tsx",
-    "frontend/src/pages/PaymentSubmittedPage.tsx",
-    "frontend/src/ui-summary.json",
-    "frontend/src/utils/StorageClient.ts",
-    "frontend/tailwind.config.js",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

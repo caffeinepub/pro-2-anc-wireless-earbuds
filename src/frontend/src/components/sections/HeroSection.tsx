@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useRevealOnScroll } from '../../hooks/useRevealOnScroll';
 import { useTilt } from '../../hooks/useTilt';
-import { PRODUCT_NAME, PRODUCT_PRICE_INR } from '../../lib/pricing';
+import { PRODUCT_NAME, PRODUCT_PRICE_INR, HERO_IMAGE_SRC } from '../../lib/pricing';
 
 export default function HeroSection() {
   const navigate = useNavigate();
@@ -49,7 +49,7 @@ export default function HeroSection() {
             <div className="relative rounded-3xl overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-transparent to-accent/10 blur-3xl" />
               <img
-                src="/assets/generated/product-hero.dim_1600x1200.png"
+                src={HERO_IMAGE_SRC}
                 alt={PRODUCT_NAME}
                 className="relative w-full h-auto drop-shadow-2xl"
               />
