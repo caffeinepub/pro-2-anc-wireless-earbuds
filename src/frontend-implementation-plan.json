@@ -1,0 +1,295 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Premium single-product earbuds landing + UPI checkout (frontend)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create single-product landing page with Hero, Features, Offer, and Trust sections for “Pro 2 ANC Wireless Earbuds” and ₹1499 (Limited Offer), with Buy Now CTA to checkout.",
+      "acceptanceCriteria": [
+        "Landing page renders all 4 requested sections with English copy and the exact product name and price",
+        "Hero contains a prominent “Buy Now” button that navigates to (or opens) the checkout page",
+        "Features are presented with recognizable icons and short, scannable text",
+        "Trust section clearly shows both trust promises: “7 Days Replacement” and “Free Shipping India”"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the main app shell and routing wiring for the landing page and checkout page; ensure the landing route renders the 4 required sections and the “Buy Now” CTA navigates to the checkout route."
+        },
+        {
+          "path": "frontend/src/pages/LandingPage.tsx",
+          "operation": "create",
+          "description": "Implement the landing page with sections in the required order (Hero, Features, Offer, Trust) using English copy, exact product name, and price “₹1499 (Limited Offer)”. Use shadcn-ui components (e.g., Button, Card, Badge) for premium UI primitives; Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/sections/HeroSection.tsx",
+          "operation": "create",
+          "description": "Create the Hero section with headline, price, primary “Buy Now” CTA, and a large 3D-floating-style product visual that uses the generated image asset at frontend/public/assets/generated/product-hero.dim_1600x1200.png. Use shadcn-ui Button for the CTA; Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/sections/FeaturesSection.tsx",
+          "operation": "create",
+          "description": "Create the Features section listing: Active Noise Cancellation, Deep Bass Sound, 30 Hours Battery Backup, Touch Control, Compatible with iPhone and Android; include recognizable icons and scannable text. Compose shadcn-ui Card components for feature tiles; Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/sections/OfferSection.tsx",
+          "operation": "create",
+          "description": "Create the Offer section emphasizing the limited offer price ₹1499 with a conversion-focused layout and a secondary Buy Now CTA that navigates to checkout. Use shadcn-ui components for typography/CTA styling; Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/sections/TrustSection.tsx",
+          "operation": "create",
+          "description": "Create the Trust section with two clear trust badges: “7 Days Replacement” and “Free Shipping India”. Use shadcn-ui Badge/Card styling as appropriate; Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/public/assets/generated/product-hero.dim_1600x1200.png",
+          "operation": "create",
+          "description": "Add the generated 3D floating earbuds hero render asset (referenced by the Hero section) at the exact path: frontend/public/assets/generated/product-hero.dim_1600x1200.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/bg-luxury.dim_1920x1080.png",
+          "operation": "create",
+          "description": "Add the generated dark luxury abstract background texture asset at the exact path: frontend/public/assets/generated/bg-luxury.dim_1920x1080.png."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Apply a premium dark-luxury Apple-like theme across landing and checkout with soft glow around the product visual; avoid blue/purple as primary brand colors.",
+      "acceptanceCriteria": [
+        "Pages use a consistent dark luxury palette and minimal premium layout",
+        "Product visual has a soft glow treatment and subtle depth/3D float effect (e.g., shadow/parallax/tilt/lighting)",
+        "No blue/purple is used as the primary brand color"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Create global styles and theme tokens (CSS variables / Tailwind base overrides) to enforce a near-black background, premium minimal typography, and a non-blue/non-purple primary accent (e.g., warm neutral/gold). Apply consistent base styles for landing + checkout."
+        },
+        {
+          "path": "frontend/src/components/layout/SiteLayout.tsx",
+          "operation": "create",
+          "description": "Create a shared layout wrapper that applies the dark-luxury background treatment using the generated texture at frontend/public/assets/generated/bg-luxury.dim_1920x1080.png and ensures consistent spacing/typography across pages. Use shadcn-ui layout-friendly primitives where relevant; Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/sections/HeroSection.tsx",
+          "operation": "modify",
+          "description": "Enhance the product visual presentation with a soft glow lighting effect and subtle depth (shadow/lighting layers) consistent with the dark-luxury theme; ensure styling does not rely on blue/purple as the primary brand color."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Add smooth scrolling and premium, performance-optimized micro-animations (reveal on scroll, CTA interactions, subtle tilt/parallax).",
+      "acceptanceCriteria": [
+        "Scrolling between sections feels smooth and consistent",
+        "Key elements (hero content, feature cards, offer, trust badges) animate in subtly on first view",
+        "Animations do not cause layout shift and remain responsive on mobile"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Enable smooth scroll behavior globally (e.g., via base element scroll-behavior) and define reusable animation utility classes (transition, opacity/transform) that avoid layout shift."
+        },
+        {
+          "path": "frontend/src/hooks/useRevealOnScroll.ts",
+          "operation": "create",
+          "description": "Create a lightweight IntersectionObserver-based hook for section/element reveal-on-scroll animations, tuned for performance and mobile responsiveness."
+        },
+        {
+          "path": "frontend/src/hooks/useTilt.ts",
+          "operation": "create",
+          "description": "Create a small, performant hook to apply subtle tilt/parallax interaction to the hero product visual (pointer/motion based), ensuring reduced-motion preferences are respected."
+        },
+        {
+          "path": "frontend/src/components/sections/HeroSection.tsx",
+          "operation": "modify",
+          "description": "Wire the reveal-on-scroll and subtle tilt/parallax micro-interactions into the hero content and product visual. Ensure no CLS/layout shift and responsive behavior."
+        },
+        {
+          "path": "frontend/src/components/sections/FeaturesSection.tsx",
+          "operation": "modify",
+          "description": "Apply first-view reveal animations to feature cards; keep motion subtle and conversion-focused."
+        },
+        {
+          "path": "frontend/src/components/sections/OfferSection.tsx",
+          "operation": "modify",
+          "description": "Apply reveal animation and premium CTA hover/press micro-interactions (without layout shift). Use shadcn-ui Button states for consistent interactions; Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/sections/TrustSection.tsx",
+          "operation": "modify",
+          "description": "Apply subtle reveal animation to trust badges and ensure animations remain smooth on mobile."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Create a high-conversion checkout page with customer details, shipping address, quantity selector, order summary, and a clear “Pay with UPI” step.",
+      "acceptanceCriteria": [
+        "Checkout is accessible via a dedicated route/page (e.g., /checkout) and from the “Buy Now” CTA",
+        "Form validates required fields (at minimum: name, phone, address, city/state, pincode, quantity) and shows inline errors",
+        "Order summary displays the exact product name and computed total based on quantity and ₹1499 unit price",
+        "UI is mobile-friendly and optimized for fast completion"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/CheckoutPage.tsx",
+          "operation": "create",
+          "description": "Implement the checkout page UI with required fields (name, phone, email optional, address lines, city, state, pincode), quantity selector, and order summary for “Pro 2 ANC Wireless Earbuds” at unit price ₹1499. Use shadcn-ui Form/Input/Button/Card components to build a clean, mobile-friendly form; Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/lib/pricing.ts",
+          "operation": "create",
+          "description": "Centralize product constants (exact product name, unit price ₹1499) and total calculation logic based on quantity, to keep checkout summary accurate and consistent."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the checkout route (e.g., /checkout) into the router and ensure navigation from the landing page “Buy Now” CTA reaches it."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Initiate UPI payment via a UPI intent deep link and render a matching client-generated QR code, with centralized payee configuration.",
+      "acceptanceCriteria": [
+        "Checkout generates a valid UPI payment link (upi://pay...) using the configured payee details, amount, and currency INR",
+        "Checkout renders a QR code that encodes the same UPI payment payload",
+        "Users can click the UPI link on supported devices or scan the QR to pay",
+        "Payee configuration is centralized and easy to update without searching multiple files"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/config/upi.ts",
+          "operation": "create",
+          "description": "Create a single centralized configuration module for UPI payee details (VPA/UPI ID, payee name, optional transaction note prefix). Ensure it is easy to edit and not spread across multiple files."
+        },
+        {
+          "path": "frontend/src/lib/upi.ts",
+          "operation": "create",
+          "description": "Implement utilities to construct the UPI intent payload/link (upi://pay...) from config + amount (INR) + optional note, ensuring proper encoding and a single source of truth shared by both link + QR."
+        },
+        {
+          "path": "frontend/src/components/upi/UPIPaymentPanel.tsx",
+          "operation": "create",
+          "description": "Create a checkout payment step panel that displays a clickable UPI intent link and a QR code encoding the identical payload, using the centralized UPI config and computed order amount. Use shadcn-ui Button/Card for layout and emphasis; Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/CheckoutPage.tsx",
+          "operation": "modify",
+          "description": "Wire the UPI payment panel into the checkout flow so users see a clear “Pay with UPI” step after completing required details and quantity selection."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Integrate Motoko canister-backed order creation and retrieval in the checkout flow, showing a confirmation screen with next steps after creating an order.",
+      "acceptanceCriteria": [
+        "Backend exposes a method to create an order and returns a unique order id",
+        "Backend persists orders across canister calls (in-canister stable storage)",
+        "Frontend creates an order before showing the UPI payment step and retains the order id for the session",
+        "Frontend can retrieve an order by id and render a confirmation view that includes order id and amount"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/lib/backendClient.ts",
+          "operation": "create",
+          "description": "Create a small frontend wrapper around the canister interface (using the core-infrastructure component’s backend connection configuration) to call order-related backend functions. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/lib/orders.ts",
+          "operation": "create",
+          "description": "Add order-flow helpers that (1) create an order when the user proceeds to payment and (2) fetch an order by id for confirmation rendering, using the typed backend interface from frontend/src/backend.d.ts."
+        },
+        {
+          "path": "frontend/src/pages/CheckoutPage.tsx",
+          "operation": "modify",
+          "description": "Update checkout flow to create an order before presenting the UPI payment step; retain the returned order id in session state (e.g., URL param, navigation state, or storage) for follow-up screens."
+        },
+        {
+          "path": "frontend/src/pages/OrderConfirmationPage.tsx",
+          "operation": "create",
+          "description": "Create a confirmation view that loads an order by id and displays order id and amount along with next steps text (e.g., complete UPI payment, then enter UTR/reference). Use shadcn-ui components for clear hierarchy; Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire a confirmation route (e.g., /order/:orderId) into the router so the checkout flow can navigate to it and users can revisit the confirmation view by id."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Allow users to submit a UPI UTR/reference for an order, store it, mark status as “payment_submitted”, and show a non-automatic verification success state.",
+      "acceptanceCriteria": [
+        "Checkout/confirmation UI provides an input for UTR/reference (with basic validation)",
+        "Backend updates the order with the provided reference and changes status accordingly",
+        "Frontend displays a final confirmation screen indicating payment reference received and that verification is pending",
+        "The app does not imply real-time/automatic UPI verification"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/orders/UPIReferenceForm.tsx",
+          "operation": "create",
+          "description": "Create a UTR/reference input form with basic validation and clear helper text stating verification is pending (no automatic verification). Use shadcn-ui Input/Button and inline error styling; Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/OrderConfirmationPage.tsx",
+          "operation": "modify",
+          "description": "Add the UTR/reference submission step to the confirmation view; on submit, call the backend to store the reference and update status, then transition to a final success state."
+        },
+        {
+          "path": "frontend/src/pages/PaymentSubmittedPage.tsx",
+          "operation": "create",
+          "description": "Create a final confirmation screen explaining that the payment reference was received and the order will be confirmed after manual verification; avoid any implication of real-time/automatic UPI verification. Use shadcn-ui components for clean messaging; Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire a final success route (e.g., /order/:orderId/submitted) and ensure the confirmation page can navigate to it after reference submission."
+        },
+        {
+          "path": "frontend/src/lib/orders.ts",
+          "operation": "modify",
+          "description": "Add a helper to submit the UPI reference for an order (calling the backend submit function) and update cached order state where applicable (e.g., via React Query)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Add lightweight site navigation (top nav with product name + Buy Now) and a footer with India-focused trust/support text; keep all UI text in English.",
+      "acceptanceCriteria": [
+        "Top navigation is present on landing and checkout pages",
+        "Footer is present and styled consistently with the premium theme",
+        "All visible UI text is English and matches the product/offer details provided by the user"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/layout/TopNav.tsx",
+          "operation": "create",
+          "description": "Create a top navigation bar showing the product name and a “Buy Now” button that navigates to checkout. Use shadcn-ui Button for consistent premium styling; Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/layout/Footer.tsx",
+          "operation": "create",
+          "description": "Create a footer with basic India-focused trust/support text in English, styled consistently with the dark-luxury theme. Use shadcn-ui typography primitives if applicable; Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/layout/SiteLayout.tsx",
+          "operation": "modify",
+          "description": "Wire TopNav and Footer into the shared layout so they render on both landing and checkout/confirmation screens."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap all routes/pages with SiteLayout to ensure navigation and footer appear consistently across landing + checkout + confirmation screens."
+        }
+      ]
+    }
+  ]
+}

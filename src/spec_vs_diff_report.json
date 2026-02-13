@@ -1,0 +1,111 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-13T08:29:51.080Z",
+  "summary": "Diff adds a new single-product frontend structure (landing sections, theme, routing, UPI link generation panel, order/UTR forms) and a Motoko backend actor with basic order CRUD. However, several core acceptance criteria are either not evidenced (checkout/confirmation pages are omitted from diff) or are implemented in ways that conflict with requirements (no stable persistence, non-unique server-generated IDs, QR not generated client-side, status not updated on UTR submit).",
+  "missing_requirements": [
+    {
+      "id": "REQ-4",
+      "requirement": "Checkout page with required customer details + full shipping address fields, quantity selector, order summary with computed total, inline validation, and mobile-friendly layout.",
+      "reason": "Routes reference a CheckoutPage but the diff summary does not include the implementation of `frontend/src/pages/CheckoutPage` (and related form fields/validation/order summary), so the required fields/validation/summary cannot be verified from the provided changes.",
+      "evidence": [
+        "frontend/src/App.tsx (routes to CheckoutPage)",
+        "(pages not shown in diff)"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "requirement": "Generate a scannable UPI QR code on the client (encoding the same upi://pay payload) and provide centralized, easily editable payee configuration without hardcoding unknown merchant credentials.",
+      "reason": "QR code is not generated client-side; it is obtained via an external QR image API (`api.qrserver.com`). Also UPI payee details are hardcoded to `merchant@upi`, which violates the requirement to avoid hardcoding unknown merchant credentials (should be a single config but not filled with placeholder merchant credentials in a way that could be misconstrued as real).",
+      "evidence": [
+        "frontend/src/components/upi/UPIPaymentPanel.tsx (uses https://api.qrserver.com/...)",
+        "frontend/src/config/upi.ts (vpa: 'merchant@upi')"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "requirement": "Backend persists orders across canister calls using in-canister stable storage and returns a unique order id when creating an order; frontend creates order before payment and can fetch by id to render confirmation with next steps.",
+      "reason": "Backend uses an in-memory `Map.empty` without any stable variable / preupgrade / postupgrade logic, so persistence across upgrades is not implemented. Also `createOrder` requires the client to supply `id` rather than the backend generating a unique id. Frontend confirmation flow cannot be fully verified because page implementations are not shown.",
+      "evidence": [
+        "backend/main.mo (let orders = Map.empty...; no stable storage; createOrder(id: Text, ...) requires caller-provided id)",
+        "frontend/src/App.tsx (routes for /order/$orderId and confirmation pages, but page files not shown)"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "requirement": "Submitting a UPI reference/UTR updates the order with the reference and marks status as “payment_submitted”, and frontend shows final confirmation that verification is pending (no automatic verification implied).",
+      "reason": "Backend `submitUPIReference` only sets `upiReference` and does not update `status` to `payment_submitted`. Frontend final confirmation page content is not shown, so the success state messaging cannot be verified from the diff.",
+      "evidence": [
+        "backend/main.mo (submitUPIReference updates upiReference only; status unchanged)",
+        "frontend/src/components/orders/UPIReferenceForm.tsx (submits reference, but final page not shown)"
+      ]
+    },
+    {
+      "id": "REQ-1",
+      "requirement": "Landing page renders all 4 requested sections in order, with exact price text “₹1499 (Limited Offer)” and a prominent “Buy Now” CTA that navigates to checkout.",
+      "reason": "Individual section components exist, but the actual `LandingPage` composition/order and the exact hero price string “₹1499 (Limited Offer)” cannot be confirmed because `frontend/src/pages/LandingPage` is not included in the diff summary; in `HeroSection` the visible price appears as “₹1499” with a separate “Limited Time Offer” badge rather than the exact requested “₹1499 (Limited Offer)”.",
+      "evidence": [
+        "frontend/src/components/sections/HeroSection.tsx (shows ₹{PRODUCT_PRICE_INR} and 'Limited Time Offer' badge, not the exact combined price string)",
+        "frontend/src/App.tsx (LandingPage route but page file not shown)"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Backend method to list all orders (`listOrders`).",
+      "reason": "Not requested in requirements (no admin/dashboard or listing endpoint requested).",
+      "evidence": [
+        "backend/main.mo (public query func listOrders)"
+      ]
+    },
+    {
+      "description": "Footer includes social media links and a caffeine.ai referral attribution block.",
+      "reason": "Not requested by the BuildRequest; footer only required basic India-focused trust/support text.",
+      "evidence": [
+        "frontend/src/components/layout/Footer.tsx (Follow Us links; caffeine.ai attribution)"
+      ]
+    },
+    {
+      "description": "Internet Identity authentication hook and actor switching between authenticated/anonymous actors.",
+      "reason": "Internet Identity is permitted but explicitly “not required for this build”; adding auth plumbing is extra functionality not requested by any REQ.",
+      "evidence": [
+        "frontend/src/hooks/useInternetIdentity.ts",
+        "frontend/src/hooks/useActor.ts"
+      ]
+    }
+  ],
+  "confidence": 0.78,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/layout/Footer.tsx",
+    "frontend/src/components/layout/SiteLayout.tsx",
+    "frontend/src/components/layout/TopNav.tsx",
+    "frontend/src/components/orders/UPIReferenceForm.tsx",
+    "frontend/src/components/sections/FeaturesSection.tsx",
+    "frontend/src/components/sections/HeroSection.tsx",
+    "frontend/src/components/sections/OfferSection.tsx",
+    "frontend/src/components/sections/TrustSection.tsx",
+    "frontend/src/components/upi/UPIPaymentPanel.tsx",
+    "frontend/src/config/upi.ts",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/hooks/useRevealOnScroll.ts",
+    "frontend/src/hooks/useTilt.ts",
+    "frontend/src/index.css",
+    "frontend/src/lib/pricing.ts",
+    "frontend/src/lib/upi.ts",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/CheckoutPage.tsx",
+    "frontend/src/pages/LandingPage.tsx",
+    "frontend/src/pages/OrderConfirmationPage.tsx",
+    "frontend/src/pages/PaymentSubmittedPage.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

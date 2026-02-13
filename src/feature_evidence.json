@@ -1,0 +1,175 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-build-a-single-product-landing-page-for-pro-2-anc-wireless-earbuds-with-these-sections-in-order-1-hero-with-large-3d-floating-style-product-visual-headline-price-1499-limited-offer-and-primary-buy-now-cta-2-features-section-highlighting-active-noise-cancellation-deep-bass-sound-30-hours-battery-backup-touch-control-compatible-with-iphone-and-android-3-offer-section-emphasizing-the-limited-offer-price-1499-4-trust-section-with-7-days-replacement-and-free-shipping-india-trust-badges",
+      "featureTitle": "Build a single-product landing page for “Pro 2 ANC Wireless Earbuds” with these sections in order: (1) Hero with large 3D-floating-style product visual, headline, price “₹1499 (Limited Offer)”, and primary “Buy Now” CTA; (2) Features section highlighting: Active Noise Cancellation, Deep Bass Sound, 30 Hours Battery Backup, Touch Control, Compatible with iPhone and Android; (3) Offer section emphasizing the limited offer price ₹1499; (4) Trust section with “7 Days Replacement” and “Free Shipping India” trust badges.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/sections/FeaturesSection.tsx",
+        "frontend/src/components/sections/HeroSection.tsx",
+        "frontend/src/components/sections/OfferSection.tsx",
+        "frontend/src/components/sections/TrustSection.tsx",
+        "frontend/src/pages/LandingPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-premium-dark-luxury-visual-theme-black-near-black-base-with-an-apple-like-clean-layout-modern-minimal-typography-and-a-soft-glow-lighting-effect-around-the-product-visual-apply-the-theme-consistently-across-landing-checkout-without-using-blue-purple-as-primary-brand-colors",
+      "featureTitle": "Implement a premium dark-luxury visual theme (black/near-black base) with an Apple-like clean layout, modern minimal typography, and a soft glow lighting effect around the product visual; apply the theme consistently across landing + checkout without using blue/purple as primary brand colors.",
+      "files": [
+        "frontend/src/components/layout/SiteLayout.tsx",
+        "frontend/src/components/sections/HeroSection.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-smooth-scroll-behavior-and-premium-micro-animations-e-g-section-reveal-on-scroll-cta-hover-press-subtle-parallax-tilt-on-product-optimized-for-performance-and-conversion-focused-clarity",
+      "featureTitle": "Add smooth scroll behavior and premium micro-animations (e.g., section reveal on scroll, CTA hover/press, subtle parallax/tilt on product) optimized for performance and conversion-focused clarity.",
+      "files": [
+        "frontend/src/components/sections/FeaturesSection.tsx",
+        "frontend/src/components/sections/HeroSection.tsx",
+        "frontend/src/components/sections/OfferSection.tsx",
+        "frontend/src/components/sections/TrustSection.tsx",
+        "frontend/src/hooks/useRevealOnScroll.ts",
+        "frontend/src/hooks/useTilt.ts",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-simple-high-conversion-checkout-page-that-includes-customer-details-name-phone-email-optional-shipping-address-fields-address-line-s-city-state-pincode-quantity-selector-order-summary-showing-the-product-name-and-total-price-and-a-clear-pay-with-upi-step",
+      "featureTitle": "Create a simple, high-conversion checkout page that includes: customer details (name, phone, email optional), shipping address fields (address line(s), city, state, pincode), quantity selector, order summary showing the product name and total price, and a clear “Pay with UPI” step.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/lib/pricing.ts",
+        "frontend/src/pages/CheckoutPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-upi-payment-initiation-on-the-checkout-page-using-a-upi-intent-deep-link-and-a-scannable-qr-code-generated-on-the-client-provide-a-single-clearly-located-configuration-for-upi-payee-details-vpa-upi-id-payee-name-optional-transaction-note-prefix-without-hardcoding-unknown-merchant-credentials",
+      "featureTitle": "Implement UPI payment initiation on the checkout page using a UPI intent deep link and a scannable QR code generated on the client. Provide a single, clearly-located configuration for UPI payee details (VPA/UPI ID, payee name, optional transaction note prefix) without hardcoding unknown merchant credentials.",
+      "files": [
+        "frontend/src/components/upi/UPIPaymentPanel.tsx",
+        "frontend/src/config/upi.ts",
+        "frontend/src/lib/upi.ts",
+        "frontend/src/pages/CheckoutPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-an-order-flow-backed-by-the-motoko-canister-create-an-order-when-the-user-proceeds-to-payment-store-order-details-customer-info-address-quantity-amount-timestamps-and-set-initial-status-to-pending-payment-allow-the-frontend-to-fetch-the-created-order-by-id-to-show-a-confirmation-screen-with-next-steps-e-g-complete-upi-payment-then-enter-utr-reference",
+      "featureTitle": "Add an order flow backed by the Motoko canister: create an order when the user proceeds to payment, store order details (customer info, address, quantity, amount, timestamps) and set initial status to “pending_payment”; allow the frontend to fetch the created order by id to show a confirmation screen with next steps (e.g., “Complete UPI payment, then enter UTR/reference”).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/CheckoutPage.tsx",
+        "frontend/src/pages/OrderConfirmationPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-allow-the-user-to-submit-a-upi-payment-reference-utr-after-paying-store-it-on-the-order-and-mark-status-as-payment-submitted-without-claiming-automatic-payment-verification-show-a-clear-success-state-explaining-that-the-order-will-be-confirmed-after-verification",
+      "featureTitle": "Allow the user to submit a UPI payment reference/UTR after paying; store it on the order and mark status as “payment_submitted” (without claiming automatic payment verification). Show a clear success state explaining that the order will be confirmed after verification.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/orders/UPIReferenceForm.tsx",
+        "frontend/src/pages/OrderConfirmationPage.tsx",
+        "frontend/src/pages/PaymentSubmittedPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-lightweight-navigation-structure-for-a-single-product-site-top-nav-with-product-name-and-a-buy-now-button-and-footer-with-basic-india-focused-trust-support-text-keep-all-user-facing-text-in-english",
+      "featureTitle": "Add a lightweight navigation structure for a single-product site: top nav with product name and a “Buy Now” button, and footer with basic India-focused trust/support text; keep all user-facing text in English.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/layout/Footer.tsx",
+        "frontend/src/components/layout/SiteLayout.tsx",
+        "frontend/src/components/layout/TopNav.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

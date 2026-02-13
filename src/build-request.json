@@ -1,0 +1,185 @@
+{
+  "kind": "build_request",
+  "title": "Premium single-product ecommerce site for Pro 2 ANC Wireless Earbuds (India) with UPI checkout",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Build a single-product landing page for “Pro 2 ANC Wireless Earbuds” with these sections in order: (1) Hero with large 3D-floating-style product visual, headline, price “₹1499 (Limited Offer)”, and primary “Buy Now” CTA; (2) Features section highlighting: Active Noise Cancellation, Deep Bass Sound, 30 Hours Battery Backup, Touch Control, Compatible with iPhone and Android; (3) Offer section emphasizing the limited offer price ₹1499; (4) Trust section with “7 Days Replacement” and “Free Shipping India” trust badges.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Create a premium single product ecommerce website for selling wireless earbuds in India.\n\nSections required:\n1. Hero section with big product image and Buy Now button\n2. Features section with icons\n3. Offer section with discounted price\n4. Trust section (7 Days Replacement, Free Shipping India)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Landing page renders all 4 requested sections with English copy and the exact product name and price",
+        "Hero contains a prominent “Buy Now” button that navigates to (or opens) the checkout page",
+        "Features are presented with recognizable icons and short, scannable text",
+        "Trust section clearly shows both trust promises: “7 Days Replacement” and “Free Shipping India”"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement a premium dark-luxury visual theme (black/near-black base) with an Apple-like clean layout, modern minimal typography, and a soft glow lighting effect around the product visual; apply the theme consistently across landing + checkout without using blue/purple as primary brand colors.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Design style:\n- Dark luxury theme (black background)\n- 3D floating product look\n- Modern, minimal and premium\n- Soft glow lighting effect around product\n\nStyle:\n- Premium Apple-like clean layout"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Pages use a consistent dark luxury palette and minimal premium layout",
+        "Product visual has a soft glow treatment and subtle depth/3D float effect (e.g., shadow/parallax/tilt/lighting)",
+        "No blue/purple is used as the primary brand color"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add smooth scroll behavior and premium micro-animations (e.g., section reveal on scroll, CTA hover/press, subtle parallax/tilt on product) optimized for performance and conversion-focused clarity.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Smooth scroll animation\n- High conversion focused"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Scrolling between sections feels smooth and consistent",
+        "Key elements (hero content, feature cards, offer, trust badges) animate in subtly on first view",
+        "Animations do not cause layout shift and remain responsive on mobile"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Create a simple, high-conversion checkout page that includes: customer details (name, phone, email optional), shipping address fields (address line(s), city, state, pincode), quantity selector, order summary showing the product name and total price, and a clear “Pay with UPI” step.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "6. Simple checkout page\n\n5. UPI payment integration"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Checkout is accessible via a dedicated route/page (e.g., /checkout) and from the “Buy Now” CTA",
+        "Form validates required fields (at minimum: name, phone, address, city/state, pincode, quantity) and shows inline errors",
+        "Order summary displays the exact product name and computed total based on quantity and ₹1499 unit price",
+        "UI is mobile-friendly and optimized for fast completion"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Implement UPI payment initiation on the checkout page using a UPI intent deep link and a scannable QR code generated on the client. Provide a single, clearly-located configuration for UPI payee details (VPA/UPI ID, payee name, optional transaction note prefix) without hardcoding unknown merchant credentials.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "5. UPI payment integration"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Checkout generates a valid UPI payment link (upi://pay...) using the configured payee details, amount, and currency INR",
+        "Checkout renders a QR code that encodes the same UPI payment payload",
+        "Users can click the UPI link on supported devices or scan the QR to pay",
+        "Payee configuration is centralized and easy to update without searching multiple files"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Add an order flow backed by the Motoko canister: create an order when the user proceeds to payment, store order details (customer info, address, quantity, amount, timestamps) and set initial status to “pending_payment”; allow the frontend to fetch the created order by id to show a confirmation screen with next steps (e.g., “Complete UPI payment, then enter UTR/reference”).",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Simple checkout page",
+          "UPI payment integration"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes a method to create an order and returns a unique order id",
+        "Backend persists orders across canister calls (in-canister stable storage)",
+        "Frontend creates an order before showing the UPI payment step and retains the order id for the session",
+        "Frontend can retrieve an order by id and render a confirmation view that includes order id and amount"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Allow the user to submit a UPI payment reference/UTR after paying; store it on the order and mark status as “payment_submitted” (without claiming automatic payment verification). Show a clear success state explaining that the order will be confirmed after verification.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "UPI payment integration"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Checkout/confirmation UI provides an input for UTR/reference (with basic validation)",
+        "Backend updates the order with the provided reference and changes status accordingly",
+        "Frontend displays a final confirmation screen indicating payment reference received and that verification is pending",
+        "The app does not imply real-time/automatic UPI verification"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Add a lightweight navigation structure for a single-product site: top nav with product name and a “Buy Now” button, and footer with basic India-focused trust/support text; keep all user-facing text in English.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Use English for any user-facing text in the build request."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Top navigation is present on landing and checkout pages",
+        "Footer is present and styled consistently with the premium theme",
+        "All visible UI text is English and matches the product/offer details provided by the user"
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor in backend/main.mo; only add migration.mo if an upgrade requires it",
+    "Do not modify files under frontend/src/components/ui or other immutable paths; compose them instead",
+    "No third-party authentication providers; only Internet Identity is permitted (not required for this build)",
+    "Do not claim automatic UPI payment verification or real-time payment status from banks/apps"
+  ],
+  "nonGoals": [
+    "Building a multi-product catalog, cart system for multiple SKUs, or inventory management",
+    "Integrating external payment gateways or bank verification APIs for UPI status",
+    "Adding admin dashboards unless explicitly requested later"
+  ],
+  "imageRequirements": {
+    "required": [
+      "3D floating wireless earbuds hero render on black background with soft rim glow and subtle reflections (product-hero.dim_1600x1200.png)",
+      "Wide dark luxury abstract background texture with subtle gradients/noise (bg-luxury.dim_1920x1080.png)"
+    ],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}
